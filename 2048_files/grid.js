@@ -6,7 +6,7 @@ function Grid(size) {
   this.build();
 }
 
-// Build a grid of the specified size
+/images/ Build a grid of the specified size
 Grid.prototype.build = function () {
   for (var x = 0; x < this.size; x++) {
     var row = this.cells[x] = [];
@@ -17,7 +17,7 @@ Grid.prototype.build = function () {
   }
 };
 
-// Find the first available random position
+/images/ Find the first available random position
 Grid.prototype.randomAvailableCell = function () {
   var cells = this.availableCells();
 
@@ -38,7 +38,7 @@ Grid.prototype.availableCells = function () {
   return cells;
 };
 
-// Call callback for every cell
+/images/ Call callback for every cell
 Grid.prototype.eachCell = function (callback) {
   for (var x = 0; x < this.size; x++) {
     for (var y = 0; y < this.size; y++) {
@@ -47,12 +47,12 @@ Grid.prototype.eachCell = function (callback) {
   }
 };
 
-// Check if there are any cells available
+/images/ Check if there are any cells available
 Grid.prototype.cellsAvailable = function () {
   return !!this.availableCells().length;
 };
 
-// Check if the specified cell is taken
+/images/ Check if the specified cell is taken
 Grid.prototype.cellAvailable = function (cell) {
   return !this.cellOccupied(cell);
 };
@@ -69,7 +69,7 @@ Grid.prototype.cellContent = function (cell) {
   }
 };
 
-// Inserts a tile at its position
+/images/ Inserts a tile at its position
 Grid.prototype.insertTile = function (tile) {
   this.cells[tile.x][tile.y] = tile;
 };

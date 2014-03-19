@@ -25,8 +25,8 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
 
-    if (metadata.over) self.message(false); // You lose
-    if (metadata.won) self.message(true); // You win!
+    if (metadata.over) self.message(false); /images/ You lose
+    if (metadata.won) self.message(true); /images/ You win!
   });
 };
 
@@ -50,23 +50,23 @@ HTMLActuator.prototype.addTile = function (tile) {
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
   positionClass = this.positionClass(position);
 
-  // We can't use classlist because it somehow glitches when replacing classes
+  /images/ We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
   this.applyClasses(element, classes);
 
   element.textContent = tile.value;
 
   if (tile.previousPosition) {
-    // Make sure that the tile gets rendered in the previous position first
+    /images/ Make sure that the tile gets rendered in the previous position first
     window.requestAnimationFrame(function () {
       classes[2] = self.positionClass({ x: tile.x, y: tile.y });
-      self.applyClasses(element, classes); // Update the position
+      self.applyClasses(element, classes); /images/ Update the position
     });
   } else if (tile.mergedFrom) {
     classes.push("tile-merged");
     this.applyClasses(element, classes);
 
-    // Render the tiles that merged
+    /images/ Render the tiles that merged
     tile.mergedFrom.forEach(function (merged) {
       self.addTile(merged);
     });
@@ -75,7 +75,7 @@ HTMLActuator.prototype.addTile = function (tile) {
     this.applyClasses(element, classes);
   }
 
-  // Put the tile on the board
+  /images/ Put the tile on the board
   this.tileContainer.appendChild(element);
 };
 
@@ -136,7 +136,7 @@ HTMLActuator.prototype.clearMessage = function () {
 HTMLActuator.prototype.scoreTweetButton = function () {
   var tweet = document.createElement("a");
   tweet.classList.add("twitter-share-button");
-  tweet.setAttribute("href", "https://twitter.com/share");
+  tweet.setAttribute("href", "https:/images/twitter.com/share");
   tweet.setAttribute("data-via", "gabrielecirulli");
   tweet.textContent = "Tweet";
 

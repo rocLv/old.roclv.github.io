@@ -24,18 +24,18 @@ KeyboardInputManager.prototype.listen = function () {
   var self = this;
 
   var map = {
-    38: 0, // Up
-    39: 1, // Right
-    40: 2, // Down
-    37: 3, // Left
-    75: 0, // vim keybindings
+    38: 0, /images/ Up
+    39: 1, /images/ Right
+    40: 2, /images/ Down
+    37: 3, /images/ Left
+    75: 0, /images/ vim keybindings
     76: 1,
     74: 2,
     72: 3,
-    87: 0, // W
-    68: 1, // D
-    83: 2, // S
-    65: 3  // A
+    87: 0, /images/ W
+    68: 1, /images/ D
+    83: 2, /images/ S
+    65: 3  /images/ A
   };
 
   document.addEventListener("keydown", function (event) {
@@ -56,7 +56,7 @@ KeyboardInputManager.prototype.listen = function () {
   var retry = document.getElementsByClassName("retry-button")[0];
   retry.addEventListener("click", this.restart.bind(this));
 
-  // Listen to swipe events
+  /images/ Listen to swipe events
   var touchStartClientX, touchStartClientY;
   var gameContainer = document.getElementsByClassName("game-container")[0];
 
@@ -82,7 +82,7 @@ KeyboardInputManager.prototype.listen = function () {
     var absDy = Math.abs(dy);
 
     if (Math.max(absDx, absDy) > 10) {
-      // (right : left) : (down : up)
+      /images/ (right : left) : (down : up)
       self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
     }
   });
