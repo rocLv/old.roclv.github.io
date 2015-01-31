@@ -456,9 +456,10 @@ header {
 }
 
 header h1 {
-  width: 640px;
+  width: 540px;
   margin-top: 0;
   margin-bottom: 0.2em;
+  font-size: 72px;
   font-weight: normal;
   line-height: 1;
   color: #fff;
@@ -573,7 +574,6 @@ pre code {
 
 ul, ol, dl {
   margin-bottom: 20px;
-  list-style: none;
 }
 
 
@@ -743,10 +743,11 @@ dl dd {
 
 footer {
   padding-bottom: 30px;
-  margin-top: 10px;
+  margin-right: 40px;
   font-size: 13px;
   color: #aaa;
   background: transparent url('../images/hr.png') 0 0 no-repeat;
+	float: right;
 }
 
 footer a {
@@ -755,13 +756,9 @@ footer a {
 footer a:hover {
   color: #444;
 }
-footer ul {
-  list-style: none;
-}
-footer ul li {
-  float: left;
-  margin-left: 15px;
-}
+footer ul { list-style: none; }
+footer ul li { float: left; margin: 10px;}
+
 /* MISC */
 .clearfix:after {
   display: block;

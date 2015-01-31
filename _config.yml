@@ -1,2 +1,5 @@
 name: Rails.XYZ (All about Ruby && Rails)
 markdown: redcarpet
+excerpt_separator: <!--more-->
+kramdown:
+    input: GFM

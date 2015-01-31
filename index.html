@@ -4,12 +4,17 @@ title: Rails.XYZ
 ---
 
 <div id="home">
-  <ul class="posts">
+  <ul class="posts" style="list-style:none">
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; 
-        <a href="{{ post.url }}">{{ post.title }}</a>
+      <li>
+        <h2>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <span style="color:#9DDCFF">{{ post.date | date_to_string }}</span>
+        <hr>
+        {{ post.excerpt }}
+        <hr>
       </li>
-      <p style="clear:both">{{ post.content }}</p>
     {% endfor %}
   </ul>
 </div>
