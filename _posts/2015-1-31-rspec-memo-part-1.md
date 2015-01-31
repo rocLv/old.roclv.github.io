@@ -4,6 +4,9 @@ Some code copied from [codeschool](http://codeschool.com)
 ```ruby
   gem install rspec
 ```
+**Rspec memo inspired by codeschool.com**
+Here is part 1: Rspec base conception
+<!--more-->
 ####初始化
 ```ruby
   rspec --init
