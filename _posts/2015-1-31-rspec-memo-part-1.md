@@ -1,12 +1,13 @@
 Some code copied from [codeschool](http://codeschool.com)
-###基础
+
+**Rspec memo inspired by codeschool.com**
+Here is part 1: Rspec base conception
+<!--more-->
+##基础
 ####安装
 ```ruby
   gem install rspec
 ```
-**Rspec memo inspired by codeschool.com**
-Here is part 1: Rspec base conception
-<!--more-->
 ####初始化
 ```ruby
   rspec --init
