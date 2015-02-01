@@ -1,3 +1,8 @@
+---
+layout: post
+title: Rspec note part 1
+---
+
 Some code copied from [codeschool](http://codeschool.com)
 
 **Rspec memo inspired by codeschool.com**
