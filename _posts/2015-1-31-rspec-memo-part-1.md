@@ -2,6 +2,7 @@ Some code copied from [codeschool](http://codeschool.com)
 
 **Rspec memo inspired by codeschool.com**
 Here is part 1: Rspec base conception
+
 <!--more-->
 ##基础
 ####安装
