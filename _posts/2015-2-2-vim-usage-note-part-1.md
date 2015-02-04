@@ -7,15 +7,17 @@ Introduce Vim usage
 
 Basic:
 ===
----
-:e file | > Open filename for edition   
- :  >>               | Save file 
+
+   command          |  function  
+---------------  |  --------------------
+:e file | Open filename for edition   
+:W               | Save file 
 :q | Exit vim
 :q! | Quit without saving
 :x | Write file (if file changed), and exit
 :sav filename | Saves as **filename**
-. | Repeats the last change made in normal mode
----
+**.** | **Repeats the last change made in normal mode**
+
 
 Move:
 ===
