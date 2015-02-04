@@ -1,3 +1,10 @@
+---
+layout: post
+title: Set up Rails development with tmux, tmuxinator, macvim
+---
+本文介绍了安装tmux，tmuxinator，macivim，以及使用[thought bot dotfile](https://github.com/dotfiles)设置环境等
+<!--more-->
+
 本文适用于Mac， Linux（部分安装不适用）
 
 安装

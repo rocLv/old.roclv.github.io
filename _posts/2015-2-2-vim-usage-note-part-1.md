@@ -2,10 +2,12 @@
 layout: post
 title: vim Usage note
 ---
+Introduce Vim usage
+<!--more-->
 
 Basic:
 ===
-   command          |  function
+   command          |  function  
 |  ---------------  |  --------------------------------------- |  
 :e file | Open filename for edition 
 :w               | Save file 
@@ -19,7 +21,7 @@ Basic:
 Move:
 ===
 
- command | function
+ command | function  
  | ---------------- | --------------------------------------------------|
   h,j,k,l | move the cursor left, down, up, right
   e | the end of the word
