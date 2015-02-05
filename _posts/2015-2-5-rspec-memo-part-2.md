@@ -3,11 +3,11 @@
   title: Rspec memo part 2 
 ---
  
-###DRY Rspec
+DRY Rspec using **subject**
 
 <!--more-->
     
-     
+ ###DRY Rspec    
 
 
 ####Refact with **subject**

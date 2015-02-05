@@ -203,7 +203,7 @@ Or : Use **subject(:zombie) { Zombie.new(vegetarian:true) } **
 ```
 **Note:** 
 
-    expect { change_some_thing }.to change {
+    expect { event }.to change {
         some_attributes
     }.from(before_change).to(after_change)
 
