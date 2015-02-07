@@ -11,7 +11,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title> Open this blog about ruby and rails </title>
+    <title> vim Usage note </title>
   </head>
 
   <body>
@@ -31,10 +31,41 @@
       <div class="inner clearfix">
         <section id="main-content">
           <div>
-	<h1 style="text-align:center">Open this blog about ruby and rails</h1>
+	<h1 style="text-align:center">vim Usage note</h1>
 	<hr>
   <p>
-    <p>Hi, Everyone, from today, I&#39;ll use this blog to record something.</p>
+    <p>Introduce Vim usage<br>
+&lt;!--more--&gt;</p>
+
+<h1>Basic:</h1>
+
+<p>command       |  function<br>
+---------------  |  --------------------<br>
+:e file       | Open filename for edition<br>
+:W            | Save file<br>
+:q            | Exit vim<br>
+:q!           | Quit without saving<br>
+:x            | Write file (if file changed), and exit<br>
+:sav filename | Saves as <strong>filename</strong><br>
+<strong>.</strong>         | <strong>Repeats the last change made in normal mode</strong></p>
+
+<h1>Move:</h1>
+
+<p>command | function<br>
+ | ---------------- | --------------------------------------------------|
+  h,j,k,l | move the cursor left, down, up, right
+  e | the end of the word
+  b | the begin of the word
+  0 | the begin of the line
+  $ | the end of the line
+  G | the end of the file
+  gg| the beginning of the file
+  L | the end of the screen
+  :<strong>number</strong> | to line <strong>number</strong>
+  <strong>number</strong>| | to column <strong>number</strong>
+  % | to match parenthesis
+  [[ | function start
+  [{ | block start</p>
 
   </p>
 </div>

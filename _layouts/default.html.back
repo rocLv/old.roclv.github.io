@@ -17,12 +17,8 @@
   <body>
     <header>
       <div class="inner">
-        <a href="http://rocLv.github.io" style="float:left; margin-right:30px;">
-          <img src="/images/header-ruby-logo.png" />
-        </a>
-        <h2 style="padding-top: 30px;">
-					<a href="http://roclv.github.io" style="color:#AC2830;
-            font-weight:bold"> {{ site.name }} </a>
+        <h2>
+					<a href="http://roclv.github.io" style="color:#ffffff"> {{ site.name }} </a>
 				</h2>
       </div>
     </header>

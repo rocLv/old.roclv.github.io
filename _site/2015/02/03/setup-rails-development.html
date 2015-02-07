@@ -11,7 +11,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title> Open this blog about ruby and rails </title>
+    <title> Set up Rails development with tmux, tmuxinator, macvim </title>
   </head>
 
   <body>
@@ -31,10 +31,50 @@
       <div class="inner clearfix">
         <section id="main-content">
           <div>
-	<h1 style="text-align:center">Open this blog about ruby and rails</h1>
+	<h1 style="text-align:center">Set up Rails development with tmux, tmuxinator, macvim</h1>
 	<hr>
   <p>
-    <p>Hi, Everyone, from today, I&#39;ll use this blog to record something.</p>
+    <p>本文介绍了安装tmux，tmuxinator，macivim，以及使用<a href="https://github.com/dotfiles">thought bot dotfile</a>设置环境等
+&lt;!--more--&gt;</p>
+
+<p>本文适用于Mac， Linux（部分安装不适用）</p>
+
+<h1>安装</h1>
+
+<h3>Mac下安装tmux：</h3>
+
+<p><code>brew install tmux</code></p>
+
+<h3>Ubuntu下安装：</h3>
+
+<p><code>sudo apt-get install tmux</code></p>
+
+<h3><a href="https://github.com/tmuxinator/tmuxinator">Tmuxinator</a>：</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">   gem install tmuxinator
+</code></pre></div>
+<p>在Mac下可以安装MacVim，也是用brew安装，命令略。
+我用的zsh
+所以在~/.aliases文件里设定了
+<code>alias vm=&quot;mvim -v&quot;</code>
+<strong>注意</strong>: =两边无空格</p>
+
+<p>要真正的利用vim显然这样是不够的
+所以下一步是安装配置文件，注意这个适用于zsh的</p>
+
+<p>选来选去，最后还是用了<a href="https://github.com/thoughtbot/dotfiles">thoughtbot</a>的dotfiles文件
+具体安装可以参照说明，非常详细了</p>
+
+<p>不过我喜欢railscasts的配色，所以在网上下载了railscasts.vim文件，复制到~/.vim/colors/railscasts.vim
+然后记得在~/.vimrc.local中加上一句：
+<code>colorscheme railscasts</code></p>
+
+<p><strong>注意：</strong>如果发现配色不对的话，注意检查terminal的配色：
+打开vim，输入：
+<code>:echo &amp;t_Co</code>
+如果得到的是8，就在~/.vimrc.local中再加一句
+<code>set t_Co=265</code></p>
+
+<p>最后，祝大家使用愉快 ：》</p>
 
   </p>
 </div>

@@ -2,7 +2,8 @@
   layout: post
   title: "Advanced Rspec: Stub & Mock"
 ---
-
+Advaced Rspec: Stub & Mock
+<!--more-->
     
     Defination:
     

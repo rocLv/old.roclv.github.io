@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title> Rspec note part 1 </title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://rocLv.github.io" style="float:left; margin-right:30px;">
+          <img src="/images/header-ruby-logo.png" />
+        </a>
+        <h2 style="padding-top: 30px;">
+					<a href="http://roclv.github.io" style="color:#AC2830;
+            font-weight:bold"> Rails.XYZ (All about Ruby && Rails) </a>
+				</h2>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <div>
+	<h1 style="text-align:center">Rspec note part 1</h1>
+	<hr>
+  <p>
+    <p>Some code copied from <a href="http://codeschool.com">codeschool</a></p>
+
+<p><strong>Rspec memo inspired by codeschool.com</strong>
+Here is part 1: Rspec base conception</p>
+
+<!--more-->
+
+<h2>基础</h2>
+
+<h4>安装</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">gem</span> <span class="n">install</span> <span class="n">rspec</span>
+</code></pre></div>
+<h4>初始化</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">rspec</span> <span class="o">--</span><span class="n">init</span>
+</code></pre></div>
+<h4>Three pending ways</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">it</span> <span class="s2">&quot;is an Ash&quot;</span>
+
+  <span class="n">it</span> <span class="s2">&quot;is an Ash&quot;</span> <span class="k">do</span>
+    <span class="n">pending</span>
+  <span class="k">end</span>
+
+  <span class="n">xit</span> <span class="s2">&quot;is an Ash&quot;</span> <span class="k">do</span>
+  <span class="k">end</span>
+</code></pre></div>
+<h4>First Test</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1">#spec/lib/zombie_spec.rb</span>
+  <span class="n">describe</span> <span class="no">Zombie</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">&quot;has no brains&quot;</span> <span class="k">do</span>
+      <span class="n">zombie</span> <span class="o">=</span> <span class="no">Zombie</span><span class="o">.</span><span class="n">new</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">iq</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">iq</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="c1"># or: expect(zombie.iq).to be &gt; 5</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">iq</span><span class="p">)</span><span class="o">.</span><span class="n">to</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Ash&#39;</span><span class="p">)</span>
+
+      <span class="n">expect</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">rotting</span><span class="p">)</span><span class="n">to</span> <span class="o">==</span> <span class="kp">false</span> <span class="c1">#or: expect(zombie.rotting).to be_false</span>
+      <span class="c1"># any methods end with a &#39;?&#39; can use this be function    end</span>
+  <span class="k">end</span>
+</code></pre></div>
+<p>#### Equality and Identity sytax</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"> eq(exp)     #same value
+ eql(exp)    #same value and type
+ equal(exp)  #same object
+</code></pre></div>
+<h4>True/False/nil</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">be_true     # is true
+be_false    # is false
+be_nil      # is nil
+</code></pre></div>
+<h4>Numeric comparisons</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">be &gt;= 10
+be_within(0.01).of(28.35) #floating point
+</code></pre></div>
+<h4>match</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">match /Ash \d/
+</code></pre></div>
+<h4>Array and string prefixies/suffixes</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">start_with &quot;Ash&quot;
+start_with [1,2,3]
+end_with &quot;end&quot;
+end_with [4,5]
+</code></pre></div>
+<h4>Array matching</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">match_array [a,b]
+match_array [b,a]
+# ordering is ignoring
+</code></pre></div>
+<h4>Ancestor Class</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">be_a Zombie
+be_an &lt;class&gt;
+be_a_class_of &lt;class&gt;
+be_kind_of &lt;class&gt;
+be_an_instance_of &lt;class&gt;
+be_instance_of &lt;class&gt;
+</code></pre></div>
+<h4>Collection Size</h4>
+<div class="highlight"><pre><code class="language-text" data-lang="text">have(&lt;n&gt;).things
+have_at_least(&lt;n&gt;).things
+have_at_most(&lt;n&gt;).things
+
+# When the target is a collection, things can be anything
+# If the target owns a collection, &quot;things&quot; must be the name of the collection.
+</code></pre></div>
+  </p>
+</div>
+
+        </section>
+
+        <aside id="sidebar">
+           <ul>
+             
+               <li>
+                 <a href="/2015/02/07/Rspec-Part-4-Sub-and-Mock.html">Advanced Rspec: Stub & Mock</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/05/rspec-memo-part-3-hooks-and-tags.html">Rspec about HOOKS & TAGS</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/05/rspec-memo-part-2.html">Rspec memo part 2</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/03/setup-rails-development.html">Set up Rails development with tmux, tmuxinator, macvim</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/02/vim-usage-note-part-1.html">vim Usage note</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/31/rspec-memo-part-1.html">Rspec note part 1</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/30/god-manual.html">God mannual</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/29/open-this-blog-about-Ruby-and-Rails.html">Open this blog about ruby and rails</a>
+               </li>
+             
+           <ul>
+        </aside>
+      </div>
+    </div>
+    <hr>
+<footer>
+  <ul>
+   <li>
+     <a>About me</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     <a href=mailto:wangqsh999@gmail.com>Contact me</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     <a href=mailto:wangqsh999@gmail.com>Licence</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     &copy;&nbsp;2015
+   </li>
+  </ul>
+</footer>
+
+   </body>
+</html>

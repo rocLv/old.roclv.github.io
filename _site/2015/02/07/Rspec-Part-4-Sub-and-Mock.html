@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title> Advanced Rspec: Stub & Mock </title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://rocLv.github.io" style="float:left; margin-right:30px;">
+          <img src="/images/header-ruby-logo.png" />
+        </a>
+        <h2 style="padding-top: 30px;">
+					<a href="http://roclv.github.io" style="color:#AC2830;
+            font-weight:bold"> Rails.XYZ (All about Ruby && Rails) </a>
+				</h2>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <div>
+	<h1 style="text-align:center">Advanced Rspec: Stub & Mock</h1>
+	<hr>
+  <p>
+    <p>Advaced Rspec: Stub &amp; Mock
+&lt;!--more--&gt;</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Defination:
+
+Stub
+  For replacging a method with code that returns a specified result.
+
+Mock
+  A stub with an expectations that the method gets called
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># app/models/zombe.rb</span>
+  <span class="k">class</span> <span class="nc">Zombie</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+    <span class="n">has_one</span> <span class="ss">:weapon</span>
+
+    <span class="k">def</span> <span class="nf">decaptitate</span>
+      <span class="n">weapon</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="ss">:head</span><span class="p">)</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;dead again&quot;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Stub</span>
+  <span class="c1"># Zombie.new.weapon.stub(:slice)</span>
+  <span class="c1"># </span>
+  <span class="c1"># Mock</span>
+  <span class="c1"># zombie.weapon.should_receive(:slice)</span>
+  <span class="c1">#</span>
+  <span class="c1"># spec/models/zombie_spec.rb</span>
+
+  <span class="n">describe</span> <span class="no">Zombie</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:zombie</span><span class="p">)</span> <span class="p">{</span> <span class="no">Zombie</span><span class="o">.</span><span class="n">create</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="s1">&#39;calls weapon.slice&#39;</span> <span class="k">do</span>
+      <span class="n">zombie</span><span class="o">.</span><span class="n">weapon</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:slice</span><span class="p">)</span>
+      <span class="n">zombie</span><span class="o">.</span><span class="n">decaptitate</span>
+    <span class="k">end</span>
+
+    <span class="n">context</span> <span class="s1">&#39;#decaptitate&#39;</span> <span class="k">do</span>
+      <span class="n">zombie</span><span class="o">.</span><span class="n">weapon</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:slice</span><span class="p">)</span>
+      <span class="n">zombie</span><span class="o">.</span><span class="n">decaptitate</span>
+      <span class="n">zombie</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="s1">&#39;dead again&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</code></pre></div>
+<h4>Mock with param</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># app/models/zombie.rb</span>
+
+  <span class="k">class</span> <span class="nc">Zombie</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+    <span class="k">def</span> <span class="nf">geolocate</span>
+      <span class="no">Zoogle</span><span class="o">.</span><span class="n">graveyard_locator</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">graveyard</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># spec/models/zombie_spec.rb</span>
+
+  <span class="n">it</span> <span class="s1">&#39;calls Zoogle.graveyard_locator&#39;</span> <span class="k">do</span>
+    <span class="no">Zoogle</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:graveyard_locator</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">graveyard</span><span class="p">)</span>
+    <span class="n">zombie</span><span class="o">.</span><span class="n">geolocate</span>
+  <span class="k">end</span>
+</code></pre></div>
+<h4>Mock with param and returns</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># app/models/zombie.rb</span>
+  <span class="k">def</span> <span class="nf">geolocate</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="no">Zoogle</span><span class="o">.</span><span class="n">graveyard_locator</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">graveyard</span><span class="p">)</span>
+    <span class="s2">&quot;</span><span class="si">#{</span> <span class="n">loc</span><span class="o">[</span><span class="ss">:latitude</span><span class="o">]</span> <span class="si">}</span><span class="s2">, </span><span class="si">#{</span> <span class="n">loc</span><span class="o">[</span><span class="ss">:longitude</span><span class="o">]</span> <span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+
+  <span class="c1"># spec/models/zombie_spec.rb</span>
+  <span class="n">it</span> <span class="s1">&#39;calls Zoogle.graveyard_locator&#39;</span> <span class="k">do</span>
+    <span class="no">Zoogle</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:graveyard_locator</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">graveyard</span><span class="p">)</span><span class="o">.</span><span class="n">and_return</span><span class="p">({</span><span class="ss">latitude</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">longitude</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+    <span class="n">zombie</span><span class="o">.</span><span class="n">geolocate</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="s2">&quot;2, 3&quot;</span> 
+  <span class="k">end</span>   
+</code></pre></div>
+<h4>Stub object</h4>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># app/models/zombie.rb</span>
+  <span class="k">def</span> <span class="nf">geolocate_with_object</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="no">Zoogle</span><span class="o">.</span><span class="n">graveyard_locator</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">graveyard</span><span class="p">)</span>
+    <span class="s2">&quot;</span><span class="si">#{</span> <span class="n">loc</span><span class="o">.</span><span class="n">latitude</span> <span class="si">}</span><span class="s2">, </span><span class="si">#{</span> <span class="n">loc</span><span class="o">.</span><span class="n">longitude</span> <span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+
+  <span class="c1"># spec/models/zombie_spec.rb</span>
+  <span class="n">it</span> <span class="s1">&#39;returns properly formatted lat, long&#39;</span> <span class="k">do</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="nb">sub</span><span class="p">(</span><span class="ss">lantitude</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">longitude</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="no">Zoogle</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:graveyard_locator</span><span class="p">)</span><span class="o">.</span><span class="n">returns</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+    <span class="n">zoobie</span><span class="o">.</span><span class="n">geolocator_with_object</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="s1">&#39;2, 3&#39;</span>
+  <span class="k">end</span>
+</code></pre></div>
+<p>####Stubs in the wild</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">   <span class="c1"># app/mailers/zombie_mailer.rb</span>
+   <span class="k">class</span> <span class="nc">ZombieMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
+     <span class="k">def</span> <span class="nf">welcome</span><span class="p">(</span><span class="n">zombie</span><span class="p">)</span>
+       <span class="n">mail</span><span class="p">(</span><span class="ss">from</span><span class="p">:</span> <span class="s1">&#39;admin@example.com&#39;</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span> <span class="n">zombie</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="ss">subject</span><span class="p">:</span> <span class="s1">&#39;Welcome Zombie!&#39;</span><span class="p">)</span>
+     <span class="k">end</span>
+   <span class="k">end</span>
+
+   <span class="c1"># spec/mailers/zombie_mailer_spec.rb</span>
+   <span class="n">describe</span> <span class="no">ZombieMailer</span> <span class="k">do</span>
+     <span class="n">context</span> <span class="s1">&#39;#welcome&#39;</span> <span class="k">do</span>
+       <span class="c1"># This is not necessory. Should be stub.</span>
+       <span class="n">let</span><span class="p">(</span><span class="ss">:zombie</span><span class="p">)</span> <span class="p">{</span> <span class="no">Zombie</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">email</span><span class="p">:</span> <span class="s1">&#39;ash@zombie.com&#39;</span><span class="p">)</span>
+
+       <span class="c1"># Could change to next line:</span>
+       <span class="c1"># let(:zombie) { stub(email: &#39;ash@zombie.com&#39;) }</span>
+
+       <span class="n">subject</span> <span class="p">{</span> <span class="no">ZombieMailer</span><span class="o">.</span><span class="n">welcome</span><span class="p">(</span><span class="n">zombie</span><span class="p">)</span> <span class="p">}</span>
+
+       <span class="n">its</span><span class="p">(</span><span class="ss">:from</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;admin@example.com&#39;</span><span class="p">)</span>
+       <span class="n">its</span><span class="p">(</span><span class="ss">:to</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="kp">include</span><span class="p">(</span><span class="n">zombie</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+       <span class="n">its</span><span class="p">(</span><span class="ss">:subject</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="o">==</span> <span class="s1">&#39;Welcome Zombie!&#39;</span> <span class="p">}</span>
+     <span class="k">end</span>
+   <span class="k">end</span>
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">Note: More stub options
+
+target.should_receive(:function).once
+                                .twice
+                                .exactly(3).times
+                                .at_least(2).times
+                                .at_most(3).times
+                                .any_number_of_times
+
+target.should_receive(:function).with(no_args())
+                                .with(any_args())
+                                .with(&quot;B&quot;, anything())
+                                .with(3, kind_of(NUmeric))
+                                .with(/zombie ash/)
+</code></pre></div>
+  </p>
+</div>
+
+        </section>
+
+        <aside id="sidebar">
+           <ul>
+             
+               <li>
+                 <a href="/2015/02/07/Rspec-Part-4-Sub-and-Mock.html">Advanced Rspec: Stub & Mock</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/05/rspec-memo-part-3-hooks-and-tags.html">Rspec about HOOKS & TAGS</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/05/rspec-memo-part-2.html">Rspec memo part 2</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/03/setup-rails-development.html">Set up Rails development with tmux, tmuxinator, macvim</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/02/02/vim-usage-note-part-1.html">vim Usage note</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/31/rspec-memo-part-1.html">Rspec note part 1</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/30/god-manual.html">God mannual</a>
+               </li>
+             
+               <li>
+                 <a href="/2015/01/29/open-this-blog-about-Ruby-and-Rails.html">Open this blog about ruby and rails</a>
+               </li>
+             
+           <ul>
+        </aside>
+      </div>
+    </div>
+    <hr>
+<footer>
+  <ul>
+   <li>
+     <a>About me</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     <a href=mailto:wangqsh999@gmail.com>Contact me</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     <a href=mailto:wangqsh999@gmail.com>Licence</a>
+   </li>
+	 <li><strong>|</strong></li>
+   <li>
+     &copy;&nbsp;2015
+   </li>
+  </ul>
+</footer>
+
+   </body>
+</html>
