@@ -23,8 +23,10 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-ignore /_site/
-
 guard 'jekyll' do
   watch /.*/
+end
+
+guard 'livereload' do
+  watch %r(/_site/.+)
 end
