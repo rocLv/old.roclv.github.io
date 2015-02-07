@@ -1,6 +1,6 @@
 ---
   layout: post
-  title: Rspec memo part 3 about HOOKS & TAGS
+  title: Rspec about HOOKS & TAGS
 ---
 
 This post is about HOOKS & TAGS
