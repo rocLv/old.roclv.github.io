@@ -873,3 +873,37 @@ footer ul li { float: left; margin: 10px;}
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) { }
+
+#header div.site-links {
+  overflow: hidden;
+  border-top: 5px solid #CC342D;
+  background: #585450;
+  padding: 0 0 0 8px;
+  -webkit-border-bottom-left-radius:  6px;
+     -moz-border-radius-bottomleft:   6px;
+          border-bottom-left-radius:  6px;
+  -webkit-border-bottom-right-radius: 6px;
+     -moz-border-radius-bottomright:  6px;
+          border-bottom-right-radius: 6px;
+}
+
+header nav a {
+  color: #F6F6F3;
+  text-shadow: 0 1px 0 #000;
+  background-color: #585450;
+  display: inline-block;
+  padding: 9px 12px;
+  font-weight: normal;
+  text-decoration: none;
+  float: left;
+  font-size: 15px;
+}
+
+header nav a.menu,
+header nav a.home { display: none; }
+
+header nav a.selected {
+  color: white;
+  font-weight: bold;
+}
+
