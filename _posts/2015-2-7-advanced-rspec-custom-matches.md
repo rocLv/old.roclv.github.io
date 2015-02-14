@@ -126,5 +126,43 @@ But what happens if the validation fails?
   
 ```
 
+Chained methods
+
+```ruby
+  #spec/support/validate_presence_of.rb
+  class Matcher
+     def initialize(attribute)
+         @attribute = attribute
+         @message = "can't be blank"
+     end
+
+     def matches?(model)
+         @model = model
+         @model.valid?
+         errors = @model.errors[@attribute]
+         errors.any? { |error| error == @message }
+     end
+
+     def with_message(message)
+         @message = message
+         self
+     end
+  end
+
+   # spec/models/zombie_spec.rb
+   describe Zombie do
+       it 'validates presence of name' do
+           zombie = Zombie.new(name: nil)
+           zombie.should validate_presence_of(:name).
+                        with_message('been eaten')
+           end
+      end
+
+    ....
+```
+
+
+
+
 
    
