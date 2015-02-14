@@ -23,7 +23,7 @@ Move:
 ===
 
  command | function  
- | ---------------- | --------------------------------------------------|
+  ---------------- | --------------------------------------------------|
   h,j,k,l | move the cursor left, down, up, right
   e | the end of the word
   b | the begin of the word
@@ -36,8 +36,15 @@ Move:
   **number**\| | to column **number**
   % | to match parenthesis
   [[ | function start
-  [{ | block start
+  [{ | block start   
   
+  
+  ### Copy:
+  I
+
+
+  `"+y` copy to system clipbord  
+  `"+p` paste from system clipbord
   
   
   
