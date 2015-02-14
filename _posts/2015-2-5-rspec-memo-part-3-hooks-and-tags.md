@@ -56,7 +56,11 @@ This post is about HOOKS & TAGS
 
 ```
 
-**Using share example**
+**Using shared_example**  
+Declare a shared example group using **shared_examples**, and then include it in any group using **include_examples**, or use **it_behaves_like**.
+
+Also, you could use **shared_context** and **include_context**.
+
 
 ```ruby
    # spec/models/zombie_spec.rb
@@ -71,7 +75,7 @@ This post is about HOOKS & TAGS
          it_behaves_like 'the undead'
       end
 
-    # spec/suppor/shared_examples_for_undead.rb
+    # spec/support/shared_examples_for_undead.rb
 
      shared_exampls_for 'the undead' do
          it 'dose not have a pulse' do
@@ -107,6 +111,7 @@ also, you can pass a paragram:
 ```
 
 #### Metadata and filters
+未命名文件夹m未命名文件夹9未命名文件夹未命名文件夹y
 
 ```ruby
    describe 'when hungry' do
