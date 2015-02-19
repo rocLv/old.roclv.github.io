@@ -12,6 +12,8 @@ Rails开发中除了初始化后，Gemfile中自动包含的gem，常用的还�
 * shoulda-matcher
 * guard-rspec
 * guard-livereload
+* database_cleaner
+* factory_girl_rails
 等等。
 
 首先在Gemfile中添加如下代码：
@@ -23,6 +25,8 @@ Rails开发中除了初始化后，Gemfile中自动包含的gem，常用的还�
      gem 'shoulda-matcher'
      gem 'guard-rspec'
      gem 'guard-livereload'
+     gem 'database_cleaner'
+     gem 'factory_girl_rails'
    end
  ```
  
@@ -62,6 +66,51 @@ Rails开发中除了初始化后，Gemfile中自动包含的gem，常用的还�
 
 添加shoulda-matcher到rails_helper.rb文件中  
 `require 'shoulda/matchers'`
+
+添加配置文件到 **spec/support/factory_girl.rb**
+
+```ruby
+# spec/support/factory_girl.rb
+RSpec.configure do |config|
+  # 包含这行，以便省略FactoryGirl前缀
+  config.include FactoryGirl::Syntax::Methods
+  
+  # 设置factory_girl验证
+  config.before(:suite) do
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
+  end
+end
+```
+使用方法：
+   `rails g factory_girl:model ModelName`   
+rspec会自动查找`spec/factory_girl.rb`或  
+`spec/factory_girl/*.rb`  
+  
+   
+  
+配置**database_cleaner**
+
+```ruby
+RSpec.configure do |config|
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+end
+```
 
 至此，一个基本的rails测试环境基本搭建完毕。
 
