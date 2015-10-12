@@ -1,11 +1,4 @@
----
-layout: post
-title: Building Own Sinatra's Tricks
----
-
-本文介绍了构建Rack-based的Ruby框架常用的几个技巧。
-<!--more-->
-原文请前往[Let's Build Sinatra](https://robots.thoughtbot.com/lets-build-a-sinatra)
+--- layout: post title: Building Own Sinatra's Tricks --- 本文介绍了构建Rack-based的Ruby框架常用的几个技巧。 <!--more--> 原文请前往[Let's Build Sinatra](https://robots.thoughtbot.com/lets-build-a-sinatra)
 
 曾经看过一本书[《Rebuilding Own Rails》](https://rebuilding-rails.com/)，土豪请支持作者。对于中国读者来说，此书确实挺贵。
 
@@ -42,7 +35,7 @@ require 'hello'
 run HelloApp.new
 ```
 然后在命令行终端运行：
-```terminal
+```
 $ rackup hello.ru
 ```
 
@@ -59,7 +52,7 @@ run Rails.application  #启动程序
 ```
 如果你在Rails应用的目录下运行以下命令，会有如下输出：
 
-```terminal
+```
 diancai.in master % rackup config.ru
 [2015-10-12 21:36:37] INFO  WEBrick 1.3.1
 [2015-10-12 21:36:37] INFO  ruby 2.2.3 (2015-08-18) [x86_64-darwin15]
