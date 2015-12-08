@@ -36,8 +36,7 @@ end
 减少内存消耗。不过在ruby 2.3该性能为可选的。计划是ruby
 3.0开始，会成为默认的设置。
 
-在ruby 2.3允许你通过在ruby文件前部声明` # frozen_string_literal:
-true`来启用该功能，
+在ruby 2.3允许你通过在ruby文件前部声明` # frozen_string_literal: true`来启用该功能，
 ```ruby
 # frozen_string_literal: true
 
@@ -139,4 +138,3 @@ list.grep(/ba/ # => ['bar', 'baz']
 
 ## Numeric#positive? 和#negative?正式加入ruby
 
-```
