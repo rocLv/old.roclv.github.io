@@ -37,14 +37,15 @@ end
 3.0开始，会成为默认的设置。
 
 在ruby 2.3允许你通过在ruby文件前部声明` # frozen_string_literal: true`来启用该功能，
+
 ```ruby
 # frozen_string_literal: true
 
 str = 'cat'
 str[0] = 'b'
 
-# frozen.rb:5:in `[]=': can't modify frozen String (RuntimeError)
-#   from frozen.rb:5:in `<main>'
+# frozen.rb:5:in '[]=': can't modify frozen String (RuntimeError)
+#   from frozen.rb:5:in '<main>'
 ```
 
 也可以在运行时添加参数`--enable-frozen-string-literal`来测试你的app。
@@ -79,7 +80,7 @@ dict.dig(:b, :z) # => 37
 当你得到NoMethodError的错误时，会提示相似的方法名，是不是很酷？妈妈再也不担心我记不住
 方法名了。
 
-```
+```ruby
 2.3.0-preview1 :026 > "foo bar".uppcase
 NoMethodError: undefined method `uppcase' for "foo bar":String
 Did you mean?  upcase
